@@ -14,32 +14,6 @@ def randPls(x, y, z):
     else:
         return random.sample(range(x, y), z)
 
-def write_roman(num):
-    roman = OrderedDict()
-    roman[1000] = "M"
-    roman[900] = "CM"
-    roman[500] = "D"
-    roman[400] = "CD"
-    roman[100] = "C"
-    roman[90] = "XC"
-    roman[50] = "L"
-    roman[40] = "XL"
-    roman[10] = "X"
-    roman[9] = "IX"
-    roman[5] = "V"
-    roman[4] = "IV"
-    roman[1] = "I"
-    
-    def roman_num(num):
-        for r in roman.keys():
-            x, y = divmod(num, r)
-            yield roman[r] * x
-            num -= (r * x)
-            if num <= 0:
-                break
-
-    return "".join([a for a in roman_num(num)])
-
 class cardPls():
     def __init__(self, arcana, suit, pos):
         self.major_arcana = [
@@ -73,6 +47,31 @@ class cardPls():
             self.numb = randPls(0,21,1)
         else:
             self.numb = randPls(0,13,1)
+     
+    def write_roman(self, num):
+        roman = OrderedDict()
+        roman[1000] = "M"
+        roman[900] = "CM"
+        roman[500] = "D"
+        roman[400] = "CD"
+        roman[100] = "C"
+        roman[90] = "XC"
+        roman[50] = "L"
+        roman[40] = "XL"
+        roman[10] = "X"
+        roman[9] = "IX"
+        roman[5] = "V"
+        roman[4] = "IV"
+        roman[1] = "I"
+    
+        def roman_num(num):
+            for r in roman.keys():
+                x, y = divmod(num, r)
+                yield roman[r] * x
+                num -= (r * x)
+                if num <= 0:
+                    break
+        return "".join([a for a in roman_num(num)])
         
     def getCardPls(self):
         card = {}
@@ -82,7 +81,7 @@ class cardPls():
             card['arcana'] = 'Major'
             x = randPls(0,21,1)
             card['name'] = self.major_arcana[x]
-            card['suit'] = f'{write_roman(x+1)}'
+            card['suit'] = f'{self.write_roman(x+1)}'
         else:
             card['arcana'] = 'Minor'
             if self.suit == 0:
@@ -93,12 +92,10 @@ class cardPls():
                 card['suit'] = 'Swords'
             elif self.suit == 3:
                 card['suit'] = 'Wands'
-            if 10 < self.numb <= 1:
-                card['name'] = f"{self.numb} of {card['suit']}"
-            elif self.numb == 0:
+            if self.numb >= 1:
+                card['name'] = f"{self.numb+1} of {card['suit']}"
+            elif self.numb < 1:
                 card['name'] = f"Ace of {card['suit']}"
-            else:
-                card['name'] = f"{self.numb} of {card.get('suit')}"
             # card['name'] = 
         if self.pos == True:
             card['pos'] = 'Upright'
