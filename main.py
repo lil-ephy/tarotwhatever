@@ -24,11 +24,16 @@ def newAttr(self, attr):
 
 class cardPls:
     
+    def setMarseille(self, x=False):
+        self.marseille = x
+        return self
+    
     def __init__(self, arcana, suit, upright):
         self.major_arcana = deckPls('major_arcana')
         self.arcana = bool(arcana)
         self.suit = suit
         self.upright = bool(upright)
+        self.marseille = False
         # def test():
             #list(x) = i for i in list(locals().keys()) if i != 'self'
             # print(dict(locals()))
@@ -56,8 +61,9 @@ class cardPls:
 
     def getCardPls(self):
         card = {}
-        suit_names = ["Cups", "Pentacles", "Swords", "Wands"]
-        face_names = ["Page", "Knight", "Queen", "King"]
+        
+        suit_names = ["Cups", "Pentacles", "Swords", "Wands"] if self.marseille == False else ["Coupes", "Deniers", "Épées", "Bâtons"]
+        face_names = ["Page", "Knight", "Queen", "King"] if self.marseille == False else ['Valet', 'Cavalier', 'Dame', 'Roi']
         # face vs pip cards
         
         if self.arcana:
@@ -81,10 +87,13 @@ class cardPls:
         
         return card
 
-b = (randPls(0, 1, 1), randPls(0, 3, 1), randPls(0, 1, 1))
+standard = cardPls(*(randPls(0, 1, 1), randPls(0, 3, 1), randPls(0, 1, 1))).getCardPls()
+de_marseille = cardPls(*(randPls(0, 1, 1), randPls(0, 3, 1), randPls(0, 1, 1))).setMarseille(True).getCardPls()
 
-a = cardPls(randPls(0, 1, 1), randPls(0, 3, 1), randPls(0, 1, 1)).getCardPls()
-print(", ".join(f"{key}: {value}" for key, value in a.items()))
+print(", ".join(f"{key}: {value}" for key, value in de_marseille.items()))
+
+# a = cardPls(randPls(0, 1, 1), randPls(0, 3, 1), randPls(0, 1, 1)).getCardPls()
+# print(", ".join(f"{key}: {value}" for key, value in a.items()))
 
 # def mainTest():
     # for i in a.items():
