@@ -1,7 +1,6 @@
 import random
 from deck import deckPls
-from roman import toRoman, fromRoman
-from collections import OrderedDict
+from roman import toRoman
 
 """
 ############################## TAROT APP ##############################
@@ -58,6 +57,8 @@ class cardPls:
     def getCardPls(self):
         card = {}
         suit_names = ["Cups", "Pentacles", "Swords", "Wands"]
+        face_names = ["Page", "Knight", "Queen", "King"]
+        # face vs pip cards
         
         if self.arcana:
             card["Arcana"] = "Major"
@@ -67,30 +68,35 @@ class cardPls:
         else:
             card["Arcana"] = "Minor"
             card["Suit"] = suit_names[self.suit]
-            card["Name"] = f"{self.numb+1} of {card['Suit']}" if self.numb >= 1 else f"Ace of {card['Suit']}"
+            if self.numb >= 1 and self.numb < 10:
+                card["Name"] = f"{self.numb+1} of {card['Suit']}"
+            elif self.numb < 1:
+                 card["Name"] = f"Ace of {card['Suit']}"
+            elif self.numb >=10:
+                card["Name"] = f"{face_names[self.numb-10]} of {card['Suit']}"
+
+        # need to check if card >= 10 then set name to page, knight, queen, king based on index
 
         card["Orientation"] = "Upright" if self.upright else "Reversed"
         
         return card
 
+b = (randPls(0, 1, 1), randPls(0, 3, 1), randPls(0, 1, 1))
 
 a = cardPls(randPls(0, 1, 1), randPls(0, 3, 1), randPls(0, 1, 1)).getCardPls()
-print(", ".join("%s: %s" % item for item in a.items()))
+print(", ".join(f"{key}: {value}" for key, value in a.items()))
 
-# for i in a.items():
-#     print(i)
-
-# attrs = vars(a)
-# print(attrs)
-
-# for i in attrs.items():
-#     print(i)
-
-# print(item for item in attrs.items())
-# print(', '.join("%s: %s" % item for item in attrs.items()))
-
-# print(dir(a))
-# attributes = [attr for attr in dir(a)
-#               if not attr.startswith('__')]
-# print(attributes)
-# print(cardPls.getCardPls())
+# def mainTest():
+    # for i in a.items():
+    #     print(i)
+    # attrs = vars(a)
+    # print(attrs)
+    # for i in attrs.items():
+    #     print(i)
+    # print(item for item in attrs.items())
+    # print(', '.join("%s: %s" % item for item in attrs.items()))
+    # print(dir(a))
+    # attributes = [attr for attr in dir(a)
+    #               if not attr.startswith('__')]
+    # print(attributes)
+    # print(cardPls.getCardPls())
