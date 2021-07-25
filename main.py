@@ -1,11 +1,15 @@
 import random
+from deck import deckPls
+from roman import toRoman, fromRoman
 from collections import OrderedDict
 
 """
 ############################## TAROT APP ##############################
-#  1) need to make random number generator and iterate over rng func  #
+#  1) Need to make random number generator and iterate over rng func  #
 #     to create list of random numbers                                #
-#  2) use list to select arcana, suit, card, and orientation          #
+#  2) Use list to select arcana, suit, card, and orientation          #
+#  3) Need to add spreads such as three card, five card and the       #
+#     Celtic cross                                                    #
 #######################################################################
 """
 
@@ -16,96 +20,57 @@ def randPls(x, y, z):
     else:
         return random.sample(range(x, y), z)
 
+def newAttr(self, attr):
+            setattr(self, attr, attr)
 
 class cardPls:
-    def __init__(self, arcana, suit, pos):
-        self.major_arcana = [
-            "The Fool",
-            "The Magician",
-            "The High Priestess",
-            "The Empress",
-            "The Emperor",
-            "The Hierophant",
-            "The Lovers",
-            "The Chariot",
-            "Strength",
-            "The Hermit",
-            "Wheel of Fortune",
-            "Justice",
-            "The Hanged Man",
-            "Death",
-            "Temperance",
-            "The Devil",
-            "The Tower",
-            "The Star",
-            "The Moon",
-            "The Sun",
-            "Judgment",
-            "The World",
-        ]
-        self.arcana = arcana
+    
+    def __init__(self, arcana, suit, upright):
+        self.major_arcana = deckPls('major_arcana')
+        self.arcana = bool(arcana)
         self.suit = suit
-        self.pos = pos
-
-        if self.arcana == True:
-            self.numb = randPls(0, 21, 1)
-        else:
-            self.numb = randPls(0, 13, 1)
-
-    def write_roman(self, num):
-        roman = OrderedDict()
-        roman[1000] = "M"
-        roman[900] = "CM"
-        roman[500] = "D"
-        roman[400] = "CD"
-        roman[100] = "C"
-        roman[90] = "XC"
-        roman[50] = "L"
-        roman[40] = "XL"
-        roman[10] = "X"
-        roman[9] = "IX"
-        roman[5] = "V"
-        roman[4] = "IV"
-        roman[1] = "I"
-
-        def roman_num(num):
-            for r in roman.keys():
-                x, y = divmod(num, r)
-                yield roman[r] * x
-                num -= r * x
-                if num <= 0:
-                    break
-
-        return "".join([a for a in roman_num(num)])
+        self.upright = bool(upright)
+        # def test():
+            #list(x) = i for i in list(locals().keys()) if i != 'self'
+            # print(dict(locals()))
+            # k = (k for k in locals().keys() if k != 'self')
+            # for each in k: 
+            #     self.newAttr(each)
+            #     print(each)
+            #   newAttr(k for k in locals())
+            
+            # print(locals())
+            # x = list(filter(lambda x:x != 'self', locals().keys()))
+            # self.x = x for i in list(x)
+            # print(x)
+            # print(self.__dict__)
+            # print(self.__dict__.keys())
+            # for i in x:
+            #     self.__setattr__(i,self.__dir__)
+            # print(self.__dict__)
+                # self.__dict__ = i.__dict__.copy()
+            # x = ['arcana', 'suit', 'pos']
+            # for i in list(itslocals().keys()):
+            #     # self.i = i if i != 'self' else print('SELF!!')
+            # self.arcana = self.suit = self.pos = index_
+        self.numb = randPls(0, 21 if self.arcana else 13, 1)
 
     def getCardPls(self):
         card = {}
-        # print(len(self.major_arcana))
-        # print(self.numb)
-        if self.arcana == 1:
-            card["arcana"] = "Major"
+        suit_names = ["Cups", "Pentacles", "Swords", "Wands"]
+        
+        if self.arcana:
+            card["Arcana"] = "Major"
             x = randPls(0, 21, 1)
-            card["name"] = self.major_arcana[x]
-            card["suit"] = f"{self.write_roman(x+1)}"
+            card["Name"] = self.major_arcana[x]
+            card["Suit"] = f"{toRoman(x) if x > 0 else '0'}"
         else:
-            card["arcana"] = "Minor"
-            if self.suit == 0:
-                card["suit"] = "Cups"
-            elif self.suit == 1:
-                card["suit"] = "Pentacles"
-            elif self.suit == 2:
-                card["suit"] = "Swords"
-            elif self.suit == 3:
-                card["suit"] = "Wands"
-            if self.numb >= 1:
-                card["name"] = f"{self.numb+1} of {card['suit']}"
-            elif self.numb < 1:
-                card["name"] = f"Ace of {card['suit']}"
-            # card['name'] =
-        if self.pos == True:
-            card["pos"] = "Upright"
-        else:
-            card["pos"] = "Reversed"
+            card["Arcana"] = "Minor"
+            card["Suit"] = suit_names[self.suit]
+            card["Name"] = f"{self.numb+1} of {card['Suit']}" if self.numb >= 1 else f"Ace of {card['Suit']}"
+
+        card["Orientation"] = "Upright" if self.upright else "Reversed"
+        
         return card
 
 
