@@ -44,7 +44,6 @@ There are multiple types of **spreads** in Tarot. The most popular **spreads** a
     | Draw    | 1            | 2            | 3            | 4            | 5            |
     | ------- | ------------ | ------------ | ------------ | ------------ | ------------ |
     | Meaning | Past         | Present      | Future       | Circumstance | Potential    |
-
 - Heptacard
   - Horseshoe
     | Draw    | 1            | 2            | 3            | 4            | 5            | 6            | 7            |
@@ -63,7 +62,6 @@ There are multiple types of **spreads** in Tarot. The most popular **spreads** a
     | Draw    | 1             | 2             | 3             | 4             | 5              | 6            | 7            | 8            | 9            | 10            |
     | ------- | ------------- | ------------- | ------------- | ------------- | -------------- | ------------ | ------------ | ------------ | ------------ | ------------- |
     | Meaning | Distant Past  | Near Past     | Present       | Future        | Externality    | Beliefs      | Favourable   | Critical     | Hopes/Fears  | Outcome       |
-
 - Dodecacard
   - Astrological
     | Draw    | 1             | 2             | 3             | 4             | 5              | 6            | 7            | 8            | 9            | 10            | 11            | 12            |
