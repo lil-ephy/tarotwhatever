@@ -64,4 +64,8 @@ There are multiple types of **spreads** in Tarot. The most popular **spreads** a
     | ------- | ------------- | ------------- | ------------- | ------------- | -------------- | ------------ | ------------ | ------------ | ------------ | ------------- |
     | Meaning | Distant Past  | Near Past     | Present       | Future        | Externality    | Beliefs      | Favourable   | Critical     | Hopes/Fears  | Outcome       |
 
-- Dodecacard (Astrological)
+- Dodecacard
+  - Astrological
+    | Draw    | 1             | 2             | 3             | 4             | 5              | 6            | 7            | 8            | 9            | 10            | 11            | 12            |
+    | ------- | ------------- | ------------- | ------------- | ------------- | -------------- | ------------ | ------------ | ------------ | ------------ | ------------- | ------------- | ------------- |
+    | Meaning | Define Self   | Guides Dreams | Decisions     | Focus         | Conflict       | Emotions     | Awareness    | Release      | Balance      | Temptations   | Desire        | Internality   |
