@@ -68,6 +68,3 @@ def readingPls():
     with open(f'{x.replace(":","")}.txt', "w+") as file:
         for each in spreadPls(10):
             file.writelines(f"{each}\n")
-
-
-readingPls()
