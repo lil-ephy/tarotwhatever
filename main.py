@@ -53,34 +53,20 @@ class tarotPls:
             x.append(list(v for k, v in each.items()))
         return x
 
-rprint(*(tarotPls(True).valuesPls(10))) # PRETTY PRINT UNPACKED LIST
-rprint(tarotPls().valuesPls(10)) # PRETTY PRINT NESTED LIST
-
-def tests():
-    rprint(
-        "\n################################################################################################################\n"
-    )
-    # prints cards individually
-    for i in tarotPls().cardPls(10):
-        rprint(i)
-    # print('\n################################################################################################################\n')
-    # print(tarotPls().cardPls(1))
-    rprint(
-        "\n################################################################################################################\n"
-    )
-    # prints cards as list
-    rprint(tarotPls().cardPls(10))
-    rprint(
-        "\n################################################################################################################\n"
-    )
-
+def printRaw():
+    rprint(*(tarotPls(True).valuesPls(10))) # PRETTY PRINT UNPACKED LIST
+    rprint(tarotPls().valuesPls(10)) # PRETTY PRINT NESTED LIST
+    
+def printNice():
     for each in tarotPls().valuesPls(10):
         a = "an" if each[0] == "upright" else "a"
         if each[1] == "minor":
             rprint(
-                f"You have drawn {a} [bold 214]{each[0]}[/bold 214]: [bold magenta]{each[2]}[/bold magenta] of [bold magenta]{each[3]}[/bold magenta]"
+                f"You have drawn {a} [bold magenta]{each[0]}[/bold magenta]: [bold magenta]{each[2]}[/bold magenta] of [bold magenta]{each[3]}[/bold magenta]"
             )
         else:
             rprint(
                 f"You have drawn {a} [bold magenta]{each[0]}[/bold magenta]: [bold magenta]{each[3]}[/bold magenta] ({toRoman(int(each[2]))})"
             )
+            
+printNice()
