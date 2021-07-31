@@ -1,6 +1,7 @@
 import random
 import sys
 import os
+import datetime
 from roman import toRoman
 from deck import *
 from rich import print
@@ -79,5 +80,12 @@ def printNice(quantity):
                 f"You have drawn {a} [blue]{each[0]}[/blue]: [bold blue]{each[3]}[/bold blue] [italic yellow]({toRoman(int(each[2]))})[/italic yellow]"
             )
 
-print(spreadPls(10))
 
+def readingPls():
+    x = f"{datetime.datetime.utcnow():%Y-%m-%d-%T}"
+    with open(f'{x.replace(":","")}.txt', "w+") as file:
+        for each in spreadPls(10):
+            file.writelines(f"{each}\n")
+
+
+readingPls()
