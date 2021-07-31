@@ -1,5 +1,7 @@
 __pycache__/
+.ascii_tarot/
 .venv/
 .vscode/
 trash/
 **/.DS_Store
+*.txt
