@@ -1,11 +1,11 @@
 # Tarotwhatever
 
----
-
 - [Tarotwhatever](#tarotwhatever)
   - [Basic logic of Tarot](#basic-logic-of-tarot)
     - [Card selection process](#card-selection-process)
     - [Spreads in Tarot](#spreads-in-tarot)
+
+---
 
 - Need to build in support for Lenormand at some point
 - Replace draw lists with diagrams but not images
