@@ -3,8 +3,8 @@ import sys
 import os
 from roman import toRoman
 from deck import *
-from rich import print as rprint
-from rich.panel import Panel
+from rich import print
+
 
 class tarotPls:
     def __init__(self, marseille=False):
@@ -37,12 +37,12 @@ class tarotPls:
                 if i["position"] > 9:
                     x["position"] = f"{cardGen(True, self.marseille)[i['position']-10]}"
                     x["suit"] = f"{cardGen(False, self.marseille)[i.get('suit')]}"
-                elif 9 > i['position'] > 0:
+                elif 9 > i["position"] > 0:
                     # x['position'] = f"{toRoman(i['position'])}" if i['position'] > 0 else "Ace" # add roman numbers to pip cards
                     x["position"] = f"{i['position']+1}"
                     x["suit"] = f"{cardGen(False, self.marseille)[i.get('suit')]}"
                 else:
-                    x['position'] = 'Ace'
+                    x["position"] = "Ace"
                     x["suit"] = f"{cardGen(False, self.marseille)[i.get('suit')]}"
             y.append(x)
         return y
@@ -53,20 +53,31 @@ class tarotPls:
             x.append(list(v for k, v in each.items()))
         return x
 
-def printRaw():
-    rprint(*(tarotPls(True).valuesPls(10))) # PRETTY PRINT UNPACKED LIST
-    rprint(tarotPls().valuesPls(10)) # PRETTY PRINT NESTED LIST
-    
-def printNice():
-    for each in tarotPls().valuesPls(10):
+
+class spreadPls(object):
+    def __init__(self):
+        pass
+
+    def __new__(cls, quantity):
+        return tarotPls().valuesPls(quantity)
+
+
+def printRaw(quantity):
+    print(*(tarotPls().valuesPls(quantity)))  # PRETTY PRINT UNPACKED LIST
+    print(tarotPls().valuesPls(quantity))  # PRETTY PRINT NESTED LIST
+
+
+def printNice(quantity):
+    for each in tarotPls().valuesPls(quantity):
         a = "an" if each[0] == "upright" else "a"
         if each[1] == "minor":
-            rprint(
-                f"You have drawn {a} [bold magenta]{each[0]}[/bold magenta]: [bold magenta]{each[2]}[/bold magenta] of [bold magenta]{each[3]}[/bold magenta]"
+            print(
+                f"You have drawn {a} [blue]{each[0]}[/blue]: [bold blue]{each[2]}[/bold blue] of [bold blue]{each[3]}[/bold blue]"
             )
         else:
-            rprint(
-                f"You have drawn {a} [bold magenta]{each[0]}[/bold magenta]: [bold magenta]{each[3]}[/bold magenta] ({toRoman(int(each[2]))})"
+            print(
+                f"You have drawn {a} [blue]{each[0]}[/blue]: [bold blue]{each[3]}[/bold blue] [italic yellow]({toRoman(int(each[2]))})[/italic yellow]"
             )
-            
-printNice()
+
+print(spreadPls(10))
+

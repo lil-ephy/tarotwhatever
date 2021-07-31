@@ -1,11 +1,21 @@
 def cardGen(facePls=bool, marseille=False):
     if marseille:
-        return ["Valet", "Cavalier", "Dame", "Roi"] if facePls == True else ["Coupes", "Deniers", "Épées", "Bâtons"]
+        return (
+            ["Valet", "Cavalier", "Dame", "Roi"]
+            if facePls == True
+            else ["Coupes", "Deniers", "Épées", "Bâtons"]
+        )
     else:
-        return ["Page", "Knight", "Queen", "King"] if facePls == True else ["Cups", "Pentacles", "Swords", "Wands"]
+        return (
+            ["Page", "Knight", "Queen", "King"]
+            if facePls == True
+            else ["Cups", "Pentacles", "Swords", "Wands"]
+        )
+
 
 def arcanaGen(marseille=False):
-    return [
+    return (
+        [
             "Le Mat (The Fool)",
             "Le Bateleur (The Magician)",
             "La Papesse (The Popess)",
@@ -28,7 +38,9 @@ def arcanaGen(marseille=False):
             "Le Soleil (The Sun)",
             "Le Jugement (The Judgement)",
             "Le Monde (The World)",
-        ] if marseille else [
+        ]
+        if marseille
+        else [
             "The Fool",
             "The Magician",
             "The High Priestess",
@@ -52,3 +64,4 @@ def arcanaGen(marseille=False):
             "Judgment",
             "The World",
         ]
+    )
