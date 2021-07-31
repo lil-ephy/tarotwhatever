@@ -1,5 +1,9 @@
 from main import *
+from cards import *
 
+def testAscii():
+    for k,v in majorAscii().items():
+        print(v)
 
 def printRaw(quantity):
     print(*(tarotPls().valuesPls(quantity)))  # PRETTY PRINT UNPACKED LIST
