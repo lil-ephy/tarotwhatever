@@ -53,7 +53,7 @@ class tarotPls:
             x.append(list(v for k, v in each.items()))
         return x
 
-rprint(*(tarotPls(False).valuesPls(10))) # PRETTY PRINT UNPACKED LIST
+rprint(*(tarotPls(True).valuesPls(10))) # PRETTY PRINT UNPACKED LIST
 rprint(tarotPls().valuesPls(10)) # PRETTY PRINT NESTED LIST
 
 def tests():
