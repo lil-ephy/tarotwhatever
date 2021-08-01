@@ -4,7 +4,6 @@ import os
 import datetime
 from roman import toRoman
 from deck import *
-from cards import *
 from rich import print
 
 
@@ -20,7 +19,7 @@ class tarotPls:
         self.suit = None if self.arcana == True else random.randint(0, 3)
 
     def genPls(self, cards):
-        for i in range(cards):
+        for x in range(cards):
             x = tarotPls(self.marseille).__dict__
             yield x
 
@@ -69,5 +68,4 @@ def readingPls():
     with open(f'{x.replace(":","")}.txt', "w+") as file:
         for each in spreadPls(10):
             file.writelines(f"{each}\n")
-            
-readingPls()
+

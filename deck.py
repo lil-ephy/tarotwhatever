@@ -1,3 +1,44 @@
+def lenormandGen():
+    return [
+        "Rider",
+        "Clover",
+        "Ship",
+        "House",
+        "Tree",
+        "Cloud",
+        "Snake",
+        "Coffin",
+        "Bouquet",
+        "Scythe",
+        "Broom",
+        "Birds",
+        "Child",
+        "Fox",
+        "Bear",
+        "Star",
+        "Stork",
+        "Dog",
+        "Tower",
+        "Garden",
+        "Mountain",
+        "Crossroads",
+        "Mice",
+        "Heart",
+        "Ring",
+        "Book",
+        "Letter",
+        "Gentleman",
+        "Lady",
+        "Lily",
+        "Sun",
+        "Moon",
+        "Key",
+        "Fish",
+        "Anchor",
+        "Cross",
+    ]
+
+
 def cardGen(facePls=bool, marseille=False):
     if marseille:
         return (
